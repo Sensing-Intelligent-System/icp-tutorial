@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y python-pip curl
 RUN curl -sL https://deb.nodesource.com/setup_11.x | bash
 RUN apt-get -y install nodejs
 
-RUN pip install jupyter ipywidgets jupyterlab bqplot pyyaml jupyros numpy
+RUN pip install jupyter ipywidgets jupyterlab bqplot pyyaml jupyros numpy scipy matplotlib
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
 RUN apt-get install -y ros-${ROS_DISTRO}-serial
@@ -42,5 +42,7 @@ RUN echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 RUN /bin/bash -c "source ~/.bashrc"
 
 WORKDIR ${HOME}
+
+RUN git clone https://github.com/Sensing-Intelligent-System/icp-tutorial
 
 CMD ["bash"]
